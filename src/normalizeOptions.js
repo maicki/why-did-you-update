@@ -1,4 +1,4 @@
-import _isString from 'lodash/isString'
+import _isString from 'lodash.isstring'
 
 import {defaultNotifier} from './defaultNotifier'
 

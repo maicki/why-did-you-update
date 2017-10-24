@@ -17,7 +17,15 @@
     "release:patch": "nwb build && npm version patch && npm publish"
   },
   "dependencies": {
-    "lodash": "^4.13.1"
+    "lodash.every": "^4.6.0",
+    "lodash.filter": "^4.6.0",
+    "lodash.isequal": "^4.5.0",
+    "lodash.isfunction": "^3.0.8",
+    "lodash.isstring": "^4.0.1",
+    "lodash.keys": "^4.2.0",
+    "lodash.pick": "^4.4.0",
+    "lodash.some": "^4.6.0",
+    "lodash.union": "^4.6.0"
   },
   "peerDependencies": {
     "react": "^15.0 || 0.14.x"

@@ -1,10 +1,10 @@
-import _isEqual from 'lodash/isEqual'
-import _isFunction from 'lodash/isFunction'
-import _keys from 'lodash/keys'
-import _union from 'lodash/union'
-import _filter from 'lodash/filter'
-import _every from 'lodash/every'
-import _pick from 'lodash/pick'
+import _isEqual from 'lodash.isequal'
+import _isFunction from 'lodash.isfunction'
+import _keys from 'lodash.keys'
+import _union from 'lodash.union'
+import _filter from 'lodash.filter'
+import _every from 'lodash.every'
+import _pick from 'lodash.pick'
 
 export const DIFF_TYPES = {
   UNAVOIDABLE: 'unavoidable',
