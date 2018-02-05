@@ -5,7 +5,7 @@
 
 Why did you update is a function that monkey patches React and notifies you in the console when **potentially** unnecessary re-renders occur.
 
-![](./console-screenshot.png)
+![](https://i.imgur.com/NjI4PYt.png)
 
 ### Setup
 This library is available on npm, install it with: `npm install --save why-did-you-update` or `yarn add why-did-you-update`.
