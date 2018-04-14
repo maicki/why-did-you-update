@@ -15,8 +15,8 @@ This library is available on npm, install it with: `npm install --save why-did-y
 import React from 'react'
 
 if (process.env.NODE_ENV !== 'production') {
-  const {whyDidYouUpdate} = require('why-did-you-update')
-  whyDidYouUpdate(React)
+  const {whyDidYouUpdate} = require('why-did-you-update');
+  whyDidYouUpdate(React);
 }
 ```
 
