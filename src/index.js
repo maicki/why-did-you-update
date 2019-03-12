@@ -60,13 +60,14 @@ const createFunctionalComponent = (ctor, displayName, opts) => {
 
   let previousProps = {};
   let state = {};
-  let WDYUFunctionalComponent = function(props) {
+  let WDYUFunctionalComponent = function(props, context) {
     cdu.call({ props, state }, previousProps, state);
     previousProps = props;
-    return ctor(props)
+    return ctor(props, context);
   }
 
   WDYUFunctionalComponent.displayName = displayName
+  WDYUFunctionalComponent.contextTypes = ctor.contextTypes
 
   return WDYUFunctionalComponent;
 }
