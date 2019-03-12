@@ -71,38 +71,18 @@ var createClassComponent = function createClassComponent(ctor, displayName, opts
 };
 
 // Creates a wrapper for a React functional component
-var createFunctionalComponent = function createFunctionalComponent(ctor, displayName, opts, ReactComponent) {
+var createFunctionalComponent = function createFunctionalComponent(ctor, displayName, opts) {
   var cdu = createComponentDidUpdate(displayName, opts);
 
-  // We call the original function in the render() method,
-  // and implement `componentDidUpdate` for `why-did-you-update`
-  var WDYUFunctionalComponent = function (_ReactComponent) {
-    _inherits(WDYUFunctionalComponent, _ReactComponent);
+  var previousProps = {};
+  var state = {};
+  var WDYUFunctionalComponent = function WDYUFunctionalComponent(props) {
+    cdu.call({ props: props, state: state }, previousProps, state);
+    previousProps = props;
+    return ctor(props);
+  };
 
-    function WDYUFunctionalComponent() {
-      _classCallCheck(this, WDYUFunctionalComponent);
-
-      return _possibleConstructorReturn(this, _ReactComponent.apply(this, arguments));
-    }
-
-    WDYUFunctionalComponent.prototype.render = function render() {
-      return ctor(this.props, this.context);
-    };
-
-    WDYUFunctionalComponent.prototype.componentDidUpdate = function componentDidUpdate(prevProps, prevState, snapshot) {
-      cdu.call(this, prevProps, prevState, snapshot);
-    };
-
-    return WDYUFunctionalComponent;
-  }(ReactComponent);
-
-  // copy all statics from the functional component to the class
-  // to support proptypes and context apis
-  Object.assign(WDYUFunctionalComponent, ctor, {
-    // our wrapper component needs an explicit display name
-    // based on the original constructor.
-    displayName: displayName
-  });
+  WDYUFunctionalComponent.displayName = displayName;
 
   return WDYUFunctionalComponent;
 };
@@ -141,7 +121,7 @@ export var whyDidYouUpdate = function whyDidYouUpdate(React) {
         // If the constructor function has no `render`,
         // it must be a simple functioanl component.
         ctor = memoized(memo, ctor, function () {
-          return createFunctionalComponent(ctor, displayName, opts, React.Component);
+          return createFunctionalComponent(ctor, displayName, opts);
         });
       }
     }
