@@ -55,27 +55,18 @@ const createClassComponent = (ctor, displayName, opts) => {
 }
 
 // Creates a wrapper for a React functional component
-const createFunctionalComponent = (ctor, displayName, opts, ReactComponent) => {
+const createFunctionalComponent = (ctor, displayName, opts) => {
   let cdu = createComponentDidUpdate(displayName, opts);
 
-  // We call the original function in the render() method,
-  // and implement `componentDidUpdate` for `why-did-you-update`
-  let WDYUFunctionalComponent = class extends ReactComponent {
-    render() {
-      return ctor(this.props, this.context);
-    }
-    componentDidUpdate(prevProps, prevState, snapshot) {
-      cdu.call(this, prevProps, prevState, snapshot);
-    }
+  let previousProps = {};
+  let state = {};
+  let WDYUFunctionalComponent = function(props) {
+    cdu.call({ props, state }, previousProps, state);
+    previousProps = props;
+    return ctor(props)
   }
 
-  // copy all statics from the functional component to the class
-  // to support proptypes and context apis
-  Object.assign(WDYUFunctionalComponent, ctor, {
-    // our wrapper component needs an explicit display name
-    // based on the original constructor.
-    displayName
-  })
+  WDYUFunctionalComponent.displayName = displayName
 
   return WDYUFunctionalComponent;
 }
@@ -109,7 +100,7 @@ export const whyDidYouUpdate = (React, opts = {}) => {
       } else {
         // If the constructor function has no `render`,
         // it must be a simple functioanl component.
-        ctor = memoized(memo, ctor, () => createFunctionalComponent(ctor, displayName, opts, React.Component));
+        ctor = memoized(memo, ctor, () => createFunctionalComponent(ctor, displayName, opts));
       }
     }
 
