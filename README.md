@@ -132,16 +132,13 @@ And this triggers a re-render because:
 ```js
 function something(){...} !== function something(){...}
 ```
-You can avoid it by binding this function in advance and then reusing it on all renders
+You can avoid it by defining this as array function and then reusing it on all renders
 ```js
-constructor(props){
-  super(props)
-  this.something = this.something.bind(this)
-}
-something(){
+something = () => {
   ...
 }
-render(){
+
+render() {
   return <div fn={this.something}/>
 }
 ```
