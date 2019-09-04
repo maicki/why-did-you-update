@@ -50,7 +50,11 @@ const createClassComponent = (ctor, displayName, opts) => {
   }
   // our wrapper component needs an explicit display name
   // based on the original constructor.
-  WDYUClassComponent.displayName = displayName
+  const descriptor = Object.getOwnPropertyDescriptor(WDYUClassComponent, 'displayName');
+  if (!WDYUClassComponent.displayName || (descriptor && descriptor.writable)) {
+    WDYUClassComponent.displayName = displayName;
+  }
+
   return WDYUClassComponent;
 }
 
