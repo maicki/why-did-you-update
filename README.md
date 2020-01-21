@@ -1,6 +1,6 @@
 # No Maintenance Intended
 
- Unfortunately due to time constraints, it's not possible for me to actively maintain `why-did-you-update` anymore. Consider using [@welldone-software/why-did-you-render](https://github.com/welldone-software/why-did-you-render) instead
+ Unfortunately due to time constraints, it's not possible for me to actively maintain `why-did-you-update` anymore. Consider using [@welldone-software/why-did-you-render](https://github.com/welldone-software/why-did-you-render) instead.
 
 # Why did you update
 
