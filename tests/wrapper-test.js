@@ -1,4 +1,4 @@
-import {deepEqual, equal, ok} from 'assert'
+import {equal} from 'assert'
 import React from 'react'
 import {render, unmountComponentAtNode} from 'react-dom'
 import createReactClass from 'create-react-class';
@@ -257,7 +257,11 @@ describe(`whyDidYouUpdate wrapper`, () => {
   it(`works with functional components`, () => {
     whyDidYouUpdate(React);
 
-    const Foo = () => <noscript/>;
+    const Foo = () => {
+      React.useEffect(() => {}, [])
+      
+      return <noscript/>
+    };
 
     render(<Foo a={1} />, node)
     render(<Foo a={1} />, node)
