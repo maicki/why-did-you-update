@@ -1,6 +1,8 @@
-# No Maintenance Intended
+# Deprecated
 
- Unfortunately due to time constraints, it's not possible for me to actively maintain `why-did-you-update` anymore. Consider using [@welldone-software/why-did-you-render](https://github.com/welldone-software/why-did-you-render) instead.
+why-did-you-update is now deprecated.
+
+Please use [@welldone-software/why-did-you-render](https://www.npmjs.com/package/@welldone-software/why-did-you-render) instead. It supports the latest React, tracks hooks, and does much more to improve performance.
 
 # Why did you update
 
